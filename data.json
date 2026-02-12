@@ -1,0 +1,50 @@
+{
+    "maps": [
+      {
+        "name": "Haven",
+        "image": "public/maps/haven.jpg",
+        "routes": [
+          {
+            "mode": "attack",
+            "start": { "x": 0.23, "y": 0.74 },
+            "end": { "x": 0.56, "y": 0.8 },
+            "thumbnail": "public/thumbnails/haven/a-ct.jpg",
+            "video": "https://www.youtube.com/embed/fQ-83pVb13w?si=Ivz4u2Vxn1onuO2E"
+          }
+        ]
+      },
+      {
+        "name": "Pearl",
+        "image": "public/maps/pearl.jpg",
+        "routes": [
+          {
+            "mode": "attack",
+          "start": {
+            "x": 0.6245,
+            "y": 0.8145127267613557
+          },
+          "end": {
+            "x": 0.4645,
+            "y": 0.360005625087892
+          },
+          "thumbnail": "public/thumbnails/pearl/AMain-Art1.jpg",
+          "video": "https://www.youtube.com/embed/fQ-83pVb13w?si=Ivz4u2Vxn1onuO2E"
+          },
+          {
+            "mode": "attack",
+            "start": {
+              "x": 0.7935,
+              "y": 0.5820090938920921
+            },
+            "end": {
+              "x": 0.5425,
+              "y": 0.039000609384521635
+            },
+            "thumbnail": "public/thumbnails/pearl/AMain-CT1.jpg",
+            "video": "https://www.youtube.com/embed/jsAflITzv1g?si=RWds5tQojY-PeQpZ"
+          }
+        ]
+      }
+    ]
+  }
+  

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Yoru Tactical System</title>
+
+<style>
+body{margin:0;background:#111;color:white;font-family:Arial;text-align:center}
+header{padding:15px;font-size:22px}
+.controls{margin:10px}
+select,button,input{
+    padding:6px 10px;
+    margin:5px;
+    background:#222;
+    border:1px solid #555;
+    color:white;
+}
+#map-container{
+    position:relative;
+    width:90vw;
+    max-width:1000px;
+    aspect-ratio: 3/2;   /* 依你的地圖比例改 */
+    margin:auto;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.point{position:absolute;width:14px;height:14px;border-radius:50%;transform:translate(-50%, -50%);}
+.start{background:#00aaff}
+.end{background:#ff4444}
+.line{
+    position:absolute;
+    height:2px;
+    background:#ffffaa;
+    transform-origin:left center;
+    cursor:pointer;
+    transition:.2s;
+}
+.line.faded{opacity:.2}
+.thumbnail-wrapper{
+    position:relative;
+    width:90vw;
+    max-width:800px;
+    aspect-ratio:16/9;
+    margin:auto;
+    overflow:hidden;
+    border:2px solid #333;
+    background:#000;
+}
+
+.thumbnail{
+    width:100%;
+    height:100%;
+    object-fit:cover;   /* 關鍵 */
+}
+
+.play-btn{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    font-size:40px;
+    background:rgba(0,0,0,.6);
+    padding:10px 20px;
+    cursor:pointer;
+}
+#editPanel{display:none;margin-top:10px}
+textarea{width:90%;height:200px;background:#000;color:#0f0}
+</style>
+</head>
+<body>
+
+<header>Yoru Tactical System</header>
+
+<div class="controls">
+    <select id="mapSelect"></select>
+    <button onclick="setMode('attack')">Attack</button>
+    <button onclick="setMode('defense')">Defense</button>
+    <button onclick="toggleEdit()">Edit Mode</button>
+</div>
+
+<div id="map-container"></div>
+<div id="viewer"></div>
+
+<div id="editPanel">
+    <div>
+        Thumbnail Path:
+        <input id="thumbInput" placeholder="public/thumbnails/haven/a-ct.jpg">
+    </div>
+    <div>
+        Video Embed URL:
+        <input id="videoInput">
+    </div>
+    <button onclick="saveRoute()">Save Route</button>
+    <button onclick="exportJSON()">Export JSON</button>
+    <textarea id="jsonOutput"></textarea>
+</div>
+
+<script>
+
+let data=null;
+let currentMapIndex=0;
+let currentMode="attack";
+let editMode=false;
+let tempStart=null;
+let tempEnd=null;
+
+const mapContainer=document.getElementById("map-container");
+const viewer=document.getElementById("viewer");
+
+fetch("data.json")
+.then(res=>res.json())
+.then(json=>{
+    data=json;
+    init();
+});
+
+function init(){
+    const select=document.getElementById("mapSelect");
+    data.maps.forEach((m,i)=>{
+        const opt=document.createElement("option");
+        opt.value=i;
+        opt.textContent=m.name;
+        select.appendChild(opt);
+    });
+
+    select.onchange=()=>{
+        currentMapIndex=select.value;
+        render();
+    };
+
+    render();
+}
+
+function render(){
+    const map=data.maps[currentMapIndex];
+    mapContainer.style.backgroundImage=`url('${map.image}')`;
+    mapContainer.innerHTML="";
+    viewer.innerHTML="";
+
+    map.routes
+    .filter(r=>r.mode===currentMode)
+    .forEach((r,i)=>createRoute(r,i));
+}
+
+function createRoute(route, index){
+
+    const rect = mapContainer.getBoundingClientRect();
+
+    const startX = route.start.x * rect.width;
+    const startY = route.start.y * rect.height;
+
+    const endX = route.end.x * rect.width;
+    const endY = route.end.y * rect.height;
+
+    const start = document.createElement("div");
+    start.className = "point start";
+    start.style.left = startX + "px";
+    start.style.top = startY + "px";
+
+    const end = document.createElement("div");
+    end.className = "point end";
+    end.style.left = endX + "px";
+    end.style.top = endY + "px";
+
+    const line = document.createElement("div");
+    line.className = "line";
+
+    const dx = endX - startX;
+    const dy = endY - startY;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    const ang = Math.atan2(dy, dx) * 180 / Math.PI;
+
+    line.style.width = len + "px";
+    line.style.left = startX + "px";
+    line.style.top = startY + "px";
+    line.style.transform = `rotate(${ang}deg)`;
+
+    line.onclick = () => focusRoute(index);
+
+    mapContainer.appendChild(line);
+    mapContainer.appendChild(start);
+    mapContainer.appendChild(end);
+
+    if(editMode){
+        makeDraggable(start, route.start);
+        makeDraggable(end, route.end);
+    }
+}
+
+function focusRoute(index){
+    const map=data.maps[currentMapIndex];
+    const filtered=map.routes.filter(r=>r.mode===currentMode);
+
+    document.querySelectorAll(".line").forEach((l,i)=>{
+        l.classList.toggle("faded",i!==index);
+    });
+
+    const route=filtered[index];
+
+    viewer.innerHTML=`
+        <div class="thumbnail-wrapper">
+            <img class="thumbnail" src="${route.thumbnail}">
+            <div class="play-btn" onclick="playVideo('${route.video}')">▶</div>
+        </div>
+    `;
+}
+
+function makeDraggable(element, pointData){
+
+    element.style.cursor="move";
+
+    element.onpointerdown=(e)=>{
+
+        e.stopPropagation();
+
+        document.onpointermove=(ev)=>{
+            const rect=mapContainer.getBoundingClientRect();
+
+            const x=(ev.clientX-rect.left)/rect.width;
+            const y=(ev.clientY-rect.top)/rect.height;
+
+            pointData.x=Math.max(0,Math.min(1,x));
+            pointData.y=Math.max(0,Math.min(1,y));
+
+            render();
+        };
+
+        document.onmouseup=()=>{
+            document.onpointermove=null;
+        };
+    };
+}
+
+function playVideo(url){
+    viewer.innerHTML=`
+        <div class="thumbnail-wrapper">
+            <iframe
+                src="${url}"
+                frameborder="0"
+                allowfullscreen
+                style="width:100%; height:100%; border:0;">
+            </iframe>
+        </div>
+    `;
+}
+
+
+function setMode(mode){
+    currentMode=mode;
+    render();
+}
+
+function toggleEdit(){
+    editMode=!editMode;
+    document.getElementById("editPanel").style.display=
+        editMode?"block":"none";
+}
+
+mapContainer.addEventListener("click",(e)=>{
+    if(!editMode) return;
+
+    const rect=mapContainer.getBoundingClientRect();
+
+    const x=(e.clientX-rect.left)/rect.width;
+    const y=(e.clientY-rect.top)/rect.height;
+
+    if(!tempStart){
+        tempStart={x,y};
+        alert("Start set");
+    }else{
+        tempEnd={x,y};
+        alert("End set");
+    }
+});
+
+function saveRoute(){
+
+    if(!tempStart||!tempEnd) return alert("Set points first");
+
+    const thumb=document.getElementById("thumbInput").value;
+    const video=document.getElementById("videoInput").value;
+
+    data.maps[currentMapIndex].routes.push({
+        mode:currentMode,
+        start:tempStart,
+        end:tempEnd,
+        thumbnail:thumb,
+        video:video
+    });
+
+    tempStart=null;
+    tempEnd=null;
+    render();
+}
+
+function exportJSON(){
+    document.getElementById("jsonOutput").value=
+        JSON.stringify(data,null,2);
+}
+
+</script>
+</body>
+</html>
