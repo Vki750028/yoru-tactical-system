@@ -42,10 +42,35 @@
             },
             "thumbnail": "public/thumbnails/pearl/AMain-CT.jpg",
             "video": "https://www.youtube.com/embed/jsAflITzv1g?si=RWds5tQojY-PeQpZ"
+          },
+          {
+            "mode": "attack",
+            "start": {
+              "x": 0.1765,
+              "y": 0.5910092345192893
+            },
+            "end": {
+              "x": 0.5405,
+              "y": 0.043500679698120284
+            },
+            "thumbnail": "public/thumbnails/pearl/BMain-CT.jpg",
+            "video": "https://www.youtube.com/embed/9xcT-qceLSo?si=DcDUUXJade6wix7Q"
+          },
+          {
+            "mode": "defense",
+            "start": {
+              "x": 0.1765,
+              "y": 0.5910092345192893
+            },
+            "end": {
+              "x": 0.5405,
+              "y": 0.043500679698120284
+            },
+            "thumbnail": "public/thumbnails/pearl/BMain-CT.jpg",
+            "video": "https://www.youtube.com/embed/9xcT-qceLSo?si=DcDUUXJade6wix7Q"
           }
         ]
       }
     ]
   }
-
   
