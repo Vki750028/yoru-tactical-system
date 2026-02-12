@@ -106,7 +106,7 @@ let tempEnd=null;
 const mapContainer=document.getElementById("map-container");
 const viewer=document.getElementById("viewer");
 
-fetch("data.json")
+fetch("data.json?v=" + new Date().getTime())
 .then(res=>res.json())
 .then(json=>{
     data=json;
