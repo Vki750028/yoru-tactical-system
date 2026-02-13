@@ -1,19 +1,6 @@
 {
     "maps": [
       {
-        "name": "Haven",
-        "image": "public/maps/haven.jpg",
-        "routes": [
-          {
-            "mode": "attack",
-            "start": { "x": 0.23, "y": 0.74 },
-            "end": { "x": 0.56, "y": 0.8 },
-            "thumbnail": "public/thumbnails/haven/a-ct.jpg",
-            "video": "https://www.youtube.com/embed/fQ-83pVb13w?si=Ivz4u2Vxn1onuO2E"
-          }
-        ]
-      },
-      {
         "name": "Pearl",
         "image": "public/maps/pearl.jpg",
         "routes": [
@@ -68,6 +55,19 @@
             },
             "thumbnail": "public/thumbnails/pearl/BMain-CT.jpg",
             "video": "https://www.youtube.com/embed/9xcT-qceLSo?si=DcDUUXJade6wix7Q"
+          }
+        ]
+      }    
+      ,{
+        "name": "Haven",
+        "image": "public/maps/haven.jpg",
+        "routes": [
+          {
+            "mode": "attack",
+            "start": { "x": 0.23, "y": 0.74 },
+            "end": { "x": 0.56, "y": 0.8 },
+            "thumbnail": "public/thumbnails/haven/a-ct.jpg",
+            "video": "https://www.youtube.com/embed/fQ-83pVb13w?si=Ivz4u2Vxn1onuO2E"
           }
         ]
       }
