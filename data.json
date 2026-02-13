@@ -14,7 +14,7 @@
             "x": 0.4645,
             "y": 0.360005625087892
           },
-          "thumbnail": "public/thumbnails/pearl/AMain-Art.jpg",
+          "thumbnail": "public/thumbnails/pearl/ATKSpawn-MidConnector.jpg",
           "video": "https://www.youtube.com/embed/fQ-83pVb13w?si=Ivz4u2Vxn1onuO2E"
           },
           {
@@ -64,10 +64,42 @@
         "routes": [
           {
             "mode": "attack",
-            "start": { "x": 0.23, "y": 0.74 },
-            "end": { "x": 0.56, "y": 0.8 },
-            "thumbnail": "public/thumbnails/haven/a-ct.jpg",
-            "video": "https://www.youtube.com/embed/fQ-83pVb13w?si=Ivz4u2Vxn1onuO2E"
+          "start": {
+            "x": 0.3865,
+            "y": 0.7575118361224394
+          },
+          "end": {
+            "x": 0.8365,
+            "y": 0.6105095392115502
+          },
+          "thumbnail": "public/thumbnails/haven/AMain-CT.jpg",
+          "video": "https://www.youtube.com/embed/8WNo11rwWx0?si=MvQBS1UQO25jQxVW"
+          },
+          {
+            "mode": "attack",
+            "start": {
+              "x": 0.2995,
+              "y": 0.532508320442507
+            },
+            "end": {
+              "x": 0.6475,
+              "y": 0.9120142502226597
+            },
+            "thumbnail": "public/thumbnails/haven/ATKSpawn-AHellBelow.jpg",
+            "video": "https://www.youtube.com/embed/U1DGN7X8iFE?si=5PspQfM-3QcTr1NO"
+          },
+          {
+            "mode": "defense",
+            "start": {
+              "x": 0.5655,
+              "y": 0.33000515633056765
+            },
+            "end": {
+              "x": 0.1595,
+              "y": 0.5145080391881123
+            },
+            "thumbnail": "public/thumbnails/haven/GarageWindow-ATKSpawn.jpg",
+            "video": "https://www.youtube.com/embed/7GOjTLFR2Ug?si=hueNvgE3Qretq26e"
           }
         ]
       }
