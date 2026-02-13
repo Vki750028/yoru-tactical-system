@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Yoru Tactical System</title>
 
@@ -17,6 +16,28 @@ select,button,input{
     border:1px solid #555;
     color:white;
 }
+
+/* 按鈕動畫 */
+button{
+    transition:.2s;
+}
+
+/* 攻擊 / 防守 共用 */
+button.active-mode{
+    background:#0077ff;
+    border-color:#00aaff;
+}
+
+/* 編輯模式 */
+button.active-edit{
+    background:#ffaa00;
+    border-color:#ffcc00;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
 #map-container{
     position:relative;
     width:90vw;
@@ -109,9 +130,10 @@ textarea{width:90%;height:200px;background:#000;color:#0f0}
 
 <div class="controls">
     <select id="mapSelect"></select>
-    <button onclick="setMode('attack')">Attack</button>
-    <button onclick="setMode('defense')">Defense</button>
-    <button onclick="toggleEdit()">Edit Mode</button>
+    <button id="attackBtn" onclick="setMode('attack')">Attack</button>
+    <button id="defenseBtn" onclick="setMode('defense')">Defense</button>
+    <button id="editBtn" onclick="toggleEdit()">Edit</button>
+
 </div>
 
 <div id="map-container"></div>
@@ -164,7 +186,7 @@ function init(){
         render();
     };
 
-    render();
+    setMode("attack");  // ⭐ 預設亮 Attack
 }
 
 function render(){
@@ -282,15 +304,43 @@ function playVideo(url){
 
 
 function setMode(mode){
+
     currentMode=mode;
+
+    const attackBtn=document.getElementById("attackBtn");
+    const defenseBtn=document.getElementById("defenseBtn");
+
+    attackBtn.classList.remove("active-mode");
+    defenseBtn.classList.remove("active-mode");
+
+    if(mode==="attack"){
+        attackBtn.classList.add("active-mode");
+    }else{
+        defenseBtn.classList.add("active-mode");
+    }
+
     render();
 }
 
+
 function toggleEdit(){
+
     editMode=!editMode;
+
+    const editBtn=document.getElementById("editBtn");
+
+    if(editMode){
+        editBtn.classList.add("active-edit");
+    }else{
+        editBtn.classList.remove("active-edit");
+    }
+
     document.getElementById("editPanel").style.display=
         editMode?"block":"none";
+
+    render();
 }
+
 
 mapContainer.addEventListener("click",(e)=>{
     if(!editMode) return;
