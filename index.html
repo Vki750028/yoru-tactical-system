@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 <meta charset="UTF-8">
 <title>Yoru Tactical System</title>
 
@@ -64,6 +66,40 @@ select,button,input{
 }
 #editPanel{display:none;margin-top:10px}
 textarea{width:90%;height:200px;background:#000;color:#0f0}
+
+/* 手機專用樣式 */
+@media (max-width: 768px){
+
+    header{
+        font-size:28px;
+        padding:20px;
+    }
+
+    select, button, input{
+        font-size:16px;
+        padding:10px;
+    }
+
+    #map-container{
+        width:100vw;
+        max-width:none;
+    }
+
+    .thumbnail-wrapper{
+        width:100vw;
+        max-width:none;
+    }
+
+    .point{
+        width:20px;
+        height:20px;
+    }
+
+    .line{
+        height:4px;
+    }
+
+}
 </style>
 </head>
 <body>
