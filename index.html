@@ -191,7 +191,8 @@ function init(){
 
 function render(){
     const map=data.maps[currentMapIndex];
-    mapContainer.style.backgroundImage=`url('${map.image}')`;
+    mapContainer.style.backgroundImage=
+        `url('${map.image[currentMode]}')`;
     mapContainer.innerHTML="";
     viewer.innerHTML="";
 
