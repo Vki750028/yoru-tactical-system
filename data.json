@@ -1,108 +1,113 @@
 {
-    "maps": [
-      {
-        "name": "Pearl",
-        "image": "public/maps/pearl.jpg",
-        "routes": [
-          {
-            "mode": "attack",
+  "maps": [
+    {
+      "name": "Pearl",
+      "image": {
+        "attack": "public/maps/pearl_ATK.jpg",
+        "defense": "public/maps/pearl_CT.jpg"
+      },
+      "routes": [
+        {
+          "mode": "attack",
           "start": {
-            "x": 0.6245,
-            "y": 0.8145127267613557
+            "x": 0.6385,
+            "y": 0.8250128908264192
           },
           "end": {
-            "x": 0.4645,
-            "y": 0.360005625087892
+            "x": 0.4705,
+            "y": 0.3615056485257582
           },
           "thumbnail": "public/thumbnails/pearl/ATKSpawn-MidConnector.jpg",
           "video": "https://www.youtube.com/embed/fQ-83pVb13w?si=Ivz4u2Vxn1onuO2E"
-          },
-          {
-            "mode": "attack",
-            "start": {
-              "x": 0.7935,
-              "y": 0.5820090938920921
-            },
-            "end": {
-              "x": 0.5425,
-              "y": 0.039000609384521635
-            },
-            "thumbnail": "public/thumbnails/pearl/AMain-CT.jpg",
-            "video": "https://www.youtube.com/embed/jsAflITzv1g?si=RWds5tQojY-PeQpZ"
-          },
-          {
-            "mode": "attack",
-            "start": {
-              "x": 0.1765,
-              "y": 0.5910092345192893
-            },
-            "end": {
-              "x": 0.5405,
-              "y": 0.043500679698120284
-            },
-            "thumbnail": "public/thumbnails/pearl/BMain-CT.jpg",
-            "video": "https://www.youtube.com/embed/9xcT-qceLSo?si=DcDUUXJade6wix7Q"
-          },
-          {
-            "mode": "defense",
-            "start": {
-              "x": 0.1765,
-              "y": 0.5910092345192893
-            },
-            "end": {
-              "x": 0.5405,
-              "y": 0.043500679698120284
-            },
-            "thumbnail": "public/thumbnails/pearl/BMain-CT.jpg",
-            "video": "https://www.youtube.com/embed/9xcT-qceLSo?si=DcDUUXJade6wix7Q"
-          }
-        ]
-      }    
-      ,{
-        "name": "Haven",
-        "image": "public/maps/haven.jpg",
-        "routes": [
-          {
-            "mode": "attack",
+        },
+        {
+          "mode": "attack",
           "start": {
-            "x": 0.3865,
-            "y": 0.7575118361224394
+            "x": 0.8155,
+            "y": 0.5835091173299582
           },
           "end": {
-            "x": 0.8365,
-            "y": 0.6105095392115502
+            "x": 0.5485,
+            "y": 0.028500445319458115
+          },
+          "thumbnail": "public/thumbnails/pearl/AMain-CT.jpg",
+          "video": "https://www.youtube.com/embed/jsAflITzv1g?si=RWds5tQojY-PeQpZ"
+        },
+        {
+          "mode": "attack",
+          "start": {
+            "x": 0.1665,
+            "y": 0.5940092813950218
+          },
+          "end": {
+            "x": 0.5485,
+            "y": 0.0270004218815919
+          },
+          "thumbnail": "public/thumbnails/pearl/BMain-CT.jpg",
+          "video": "https://www.youtube.com/embed/9xcT-qceLSo?si=DcDUUXJade6wix7Q"
+        },
+        {
+          "mode": "defense",
+          "start": {
+            "x": 0.8355,
+            "y": 0.4140064688510758
+          },
+          "end": {
+            "x": 0.4575,
+            "y": 0.9645150705479774
+          },
+          "thumbnail": "public/thumbnails/pearl/BMain-CT.jpg",
+          "video": "https://www.youtube.com/embed/9xcT-qceLSo?si=DcDUUXJade6wix7Q"
+        }
+      ]
+    },
+    {
+      "name": "Haven",
+      "image": {
+        "attack": "public/maps/haven_ATK.jpg",
+        "defense": "public/maps/haven_CT.jpg"
+      },
+      "routes": [
+        {
+          "mode": "attack",
+          "start": {
+            "x": 0.6555,
+            "y": 0.6585102892232692
+          },
+          "end": {
+            "x": 0.5695,
+            "y": 0.05100079688745136
           },
           "thumbnail": "public/thumbnails/haven/AMain-CT.jpg",
           "video": "https://www.youtube.com/embed/8WNo11rwWx0?si=MvQBS1UQO25jQxVW"
+        },
+        {
+          "mode": "attack",
+          "start": {
+            "x": 0.5195,
+            "y": 0.7770121408147003
           },
-          {
-            "mode": "attack",
-            "start": {
-              "x": 0.2995,
-              "y": 0.532508320442507
-            },
-            "end": {
-              "x": 0.6475,
-              "y": 0.9120142502226597
-            },
-            "thumbnail": "public/thumbnails/haven/ATKSpawn-AHellBelow.jpg",
-            "video": "https://www.youtube.com/embed/U1DGN7X8iFE?si=5PspQfM-3QcTr1NO"
+          "end": {
+            "x": 0.7525,
+            "y": 0.30150471101110954
           },
-          {
-            "mode": "defense",
-            "start": {
-              "x": 0.5655,
-              "y": 0.33000515633056765
-            },
-            "end": {
-              "x": 0.1595,
-              "y": 0.5145080391881123
-            },
-            "thumbnail": "public/thumbnails/haven/GarageWindow-ATKSpawn.jpg",
-            "video": "https://www.youtube.com/embed/7GOjTLFR2Ug?si=hueNvgE3Qretq26e"
-          }
-        ]
-      }
-    ]
-  }
-  
+          "thumbnail": "public/thumbnails/haven/ATKSpawn-AHellBelow.jpg",
+          "video": "https://www.youtube.com/embed/U1DGN7X8iFE?si=5PspQfM-3QcTr1NO"
+        },
+        {
+          "mode": "defense",
+          "start": {
+            "x": 0.5965,
+            "y": 0.5880091876435569
+          },
+          "end": {
+            "x": 0.4905,
+            "y": 0.034500539070922986
+          },
+          "thumbnail": "public/thumbnails/haven/GarageWindow-ATKSpawn.jpg",
+          "video": "https://www.youtube.com/embed/7GOjTLFR2Ug?si=hueNvgE3Qretq26e"
+        }
+      ]
+    }
+  ]
+}
